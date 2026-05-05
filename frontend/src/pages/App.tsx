@@ -31,7 +31,7 @@ export function App() {
       </section>
       <aside className="side-panel">
         <h1>TTC reliability</h1>
-        <p>Pick a rail or streetcar line on the map, or search for a bus route.</p>
+        <p>Pick a subway or light rail line on the map, or search for a streetcar or bus route.</p>
         <BusSearch />
       </aside>
     </main>

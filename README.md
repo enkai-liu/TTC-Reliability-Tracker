@@ -62,5 +62,3 @@ The Azure Functions timer is defined in `azure_functions/function_app.py`. It ca
 - `AZURE_FUNCTIONAPP_NAME`
 - `AZURE_FUNCTIONAPP_PUBLISH_PROFILE`
 - `VITE_API_BASE_URL`
-
-Grafana is intentionally not required for the MVP. The analytics API and database tables are shaped so Grafana or Azure Managed Grafana can be added later.

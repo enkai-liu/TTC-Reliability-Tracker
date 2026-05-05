@@ -40,7 +40,9 @@ a {
 }
 
 .system-map-image,
-.map-overlay {
+.map-overlay,
+.live-map-overlay,
+.station-map-layer {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -54,6 +56,17 @@ a {
 
 .map-overlay {
   pointer-events: none;
+  z-index: 2;
+}
+
+.station-map-layer {
+  pointer-events: none;
+  z-index: 3;
+}
+
+.live-map-overlay {
+  pointer-events: none;
+  z-index: 4;
 }
 
 .route-layer {
@@ -69,13 +82,12 @@ a {
 .route-focus {
   opacity: 0;
   pointer-events: none;
-  filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.7));
-  transition: opacity 140ms ease;
+  transition: opacity 120ms ease;
 }
 
 .route-layer:hover .route-focus,
 .route-layer:focus .route-focus {
-  opacity: 0.38;
+  opacity: 0.92;
 }
 
 .station {

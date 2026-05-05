@@ -17,7 +17,7 @@ describe("App", () => {
     );
 
     expect(screen.getByLabelText(/interactive ttc system map/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/search bus routes/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/search streetcar or bus routes/i)).toBeInTheDocument();
   });
 
   it("filters bus routes by search query", async () => {
@@ -28,9 +28,23 @@ describe("App", () => {
       </MemoryRouter>,
     );
 
-    await user.type(screen.getByLabelText(/search bus routes/i), "airport");
+    await user.type(screen.getByLabelText(/search streetcar or bus routes/i), "airport");
 
     expect(screen.getByText("900")).toBeInTheDocument();
     expect(screen.getByText("Airport Express")).toBeInTheDocument();
+  });
+
+  it("lists streetcar routes through search instead of the map overlay", async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+
+    await user.type(screen.getByLabelText(/search streetcar or bus routes/i), "queen");
+
+    expect(screen.getByText("501")).toBeInTheDocument();
+    expect(screen.getByText("Queen")).toBeInTheDocument();
   });
 });
