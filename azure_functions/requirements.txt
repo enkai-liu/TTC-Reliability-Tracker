@@ -1,0 +1,2 @@
+-e ./backend
+azure-functions>=1.20.0

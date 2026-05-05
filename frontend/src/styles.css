@@ -1,0 +1,291 @@
+:root {
+  color: #f7f7f3;
+  background: #0b0c0d;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.home-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  min-height: 100vh;
+  background: #0b0c0d;
+}
+
+.map-panel {
+  min-width: 0;
+  padding: 24px;
+}
+
+.system-map {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 48px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid #2d3033;
+  background: #080808;
+}
+
+.system-map-image,
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.system-map-image {
+  object-fit: contain;
+  background: #080808;
+}
+
+.map-overlay {
+  pointer-events: none;
+}
+
+.route-layer {
+  cursor: pointer;
+  outline: none;
+  pointer-events: auto;
+}
+
+.route-hit {
+  stroke: transparent;
+}
+
+.route-focus {
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.7));
+  transition: opacity 140ms ease;
+}
+
+.route-layer:hover .route-focus,
+.route-layer:focus .route-focus {
+  opacity: 0.38;
+}
+
+.station {
+  fill: #1ec7ff;
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+.station-lit {
+  fill: #fff9a8;
+  stroke: #fff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 10px #fff176);
+}
+
+.vehicle-pulse {
+  fill: transparent;
+  stroke: #fff176;
+  stroke-width: 3;
+  animation: pulse 1.4s ease-out infinite;
+}
+
+.side-panel {
+  border-left: 1px solid #2d3033;
+  padding: 32px;
+  background: #151719;
+}
+
+.side-panel h1 {
+  margin: 0 0 8px;
+  font-size: 34px;
+}
+
+.side-panel p {
+  margin: 0 0 28px;
+  color: #bbc4cf;
+  line-height: 1.5;
+}
+
+.bus-search {
+  display: grid;
+  gap: 16px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #3b4148;
+  background: #0f1113;
+  padding: 10px 12px;
+}
+
+.search-box input,
+.controls-row select {
+  width: 100%;
+  border: 0;
+  color: #fff;
+  background: transparent;
+  font: inherit;
+  outline: none;
+}
+
+.bus-list {
+  display: grid;
+  gap: 8px;
+}
+
+.bus-result {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #202429;
+  text-decoration: none;
+}
+
+.bus-result strong {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 30px;
+  background: #d71920;
+}
+
+.detail-shell {
+  min-height: 100vh;
+  padding: 32px;
+  background: #f4f6f7;
+  color: #111820;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  text-decoration: none;
+  color: #334155;
+}
+
+.route-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.route-header h1 {
+  margin: 0;
+  font-size: 38px;
+}
+
+.route-header p {
+  margin: 4px 0 0;
+  color: #64748b;
+}
+
+.route-pill {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  color: #111;
+  border: 3px solid #111;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.controls-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 280px));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.controls-row label {
+  display: grid;
+  gap: 8px;
+  color: #475569;
+  font-weight: 700;
+}
+
+.controls-row select {
+  color: #111820;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card,
+.chart-section {
+  background: #fff;
+  border: 1px solid #dce3eb;
+  padding: 20px;
+}
+
+.stat-card {
+  display: grid;
+  gap: 8px;
+}
+
+.stat-card span {
+  color: #64748b;
+}
+
+.stat-card strong {
+  font-size: 34px;
+}
+
+.chart-section h2 {
+  margin: 0 0 16px;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.95;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@media (max-width: 980px) {
+  .home-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .side-panel {
+    border-left: 0;
+    border-top: 1px solid #2d3033;
+  }
+
+  .system-map {
+    height: auto;
+    min-height: 520px;
+  }
+
+  .stat-grid,
+  .controls-row {
+    grid-template-columns: 1fr;
+  }
+}

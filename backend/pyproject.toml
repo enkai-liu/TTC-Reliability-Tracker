@@ -1,0 +1,36 @@
+[project]
+name = "ttc-reliability-backend"
+version = "0.1.0"
+description = "Backend ETL and API for the TTC reliability tracker"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "sqlalchemy>=2.0",
+  "psycopg[binary]>=3.2",
+  "pandas>=2.2",
+  "pydantic-settings>=2.4",
+  "requests>=2.32",
+  "gtfs-realtime-bindings>=1.0",
+  "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "httpx>=0.27",
+]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,33 @@
+name: Deploy Azure Functions
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - "azure_functions/**"
+      - ".github/workflows/deploy-azure-functions.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Prepare function package
+        run: |
+          mkdir -p function_package
+          cp -R azure_functions/* function_package/
+          cp -R backend function_package/backend
+          python -m pip install --upgrade pip
+          cd function_package
+          pip install -r requirements.txt --target .python_packages/lib/site-packages
+      - name: Deploy
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ secrets.AZURE_FUNCTIONAPP_NAME }}
+          package: function_package
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
